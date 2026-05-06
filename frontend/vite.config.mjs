@@ -4,16 +4,12 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const backendUrl =
-    process.env.VITE_BACKEND_URL ||
-    process.env.REACT_APP_BACKEND_URL ||
-    "http://localhost:8000";
 
 export default defineConfig({
+    base: "./",
     plugins: [react()],
-    define: {
-        "import.meta.env.VITE_BACKEND_URL": JSON.stringify(backendUrl),
-    },
+    // Support both Vite-style and legacy CRA-style frontend env vars.
+    envPrefix: ["VITE_", "REACT_APP_"],
     resolve: {
         alias: {
             "@": path.resolve(__dirname, "src"),
