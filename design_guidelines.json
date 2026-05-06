@@ -1,0 +1,94 @@
+{
+  "theme": "light",
+  "archetype": "1 (Organic & Earthy)",
+  "typography": {
+    "heading_font": "Clash Display",
+    "body_font": "Satoshi",
+    "timer_font": "JetBrains Mono",
+    "hierarchy": {
+      "h1": "text-5xl md:text-6xl lg:text-[72px] font-semibold tracking-tighter leading-[0.95]",
+      "h2": "text-3xl md:text-4xl font-medium tracking-tight",
+      "body": "text-lg md:text-xl text-[#6E5E58] leading-relaxed",
+      "small_labels": "text-xs font-bold uppercase tracking-[0.2em] text-[#6E5E58]"
+    }
+  },
+  "colors": {
+    "background_gradient": "bg-gradient-to-br from-[#FFF8F3] via-[#FFEFE3] to-[#FFFFFF]",
+    "primary": "#E05A3D",
+    "primary_hover": "#C94A2F",
+    "text_main": "#2C2421",
+    "text_muted": "#6E5E58",
+    "card_bg": "#FFFFFF",
+    "blob_gradient_1": "bg-orange-300/40",
+    "blob_gradient_2": "bg-rose-300/30",
+    "border_color": "#EEDDCA"
+  },
+  "layout": {
+    "strategy": "Asymmetrical Split (Mode A - Tetris Grid)",
+    "container": "max-w-7xl mx-auto px-6 lg:px-12 py-12 lg:py-24",
+    "grid": "grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center min-h-[80vh]",
+    "left_column": "col-span-1 lg:col-span-6 flex flex-col justify-center space-y-8",
+    "right_column": "col-span-1 lg:col-span-6 relative h-[50vh] lg:h-[70vh] flex items-center justify-center"
+  },
+  "components": {
+    "header": {
+      "style": "Crystal Glassmorphism sticky header, backdrop-blur-xl bg-white/70 border-b border-stone-200/50 py-4 px-6 lg:px-12 fixed top-0 w-full z-50",
+      "logo": "text-2xl font-black tracking-tighter text-[#2C2421]"
+    },
+    "hero_heading": {
+      "text": "Still Cooking Our Website",
+      "classes": "text-5xl md:text-6xl lg:text-[72px] font-semibold text-[#2C2421] tracking-tighter leading-[0.95]"
+    },
+    "countdown_timer": {
+      "style": "Neumorphic/Card style. 4 separate blocks (Days, Hours, Minutes, Seconds).",
+      "target_date": "2026-07-31T00:00:00Z",
+      "container_classes": "flex gap-4 mt-2",
+      "card_classes": "bg-white border border-[#EEDDCA] shadow-[0_8px_24px_rgba(224,90,61,0.08)] rounded-2xl flex flex-col items-center justify-center p-4 min-w-[80px] md:min-w-[100px]",
+      "number_classes": "text-3xl md:text-4xl font-semibold font-mono text-[#E05A3D]",
+      "label_classes": "text-xs font-bold uppercase tracking-widest text-[#6E5E58] mt-1"
+    },
+    "subtext": {
+      "text": "We're cooking up something delicious — launching first in Pune.",
+      "classes": "text-xl text-[#6E5E58] max-w-md leading-relaxed mt-6 mb-2"
+    },
+    "email_capture_form": {
+      "layout": "flex flex-col sm:flex-row gap-3 w-full max-w-md",
+      "input": "Shadcn Input, rounded-xl h-14 bg-white/80 border-[#EEDDCA] focus:ring-2 focus:ring-[#E05A3D]/20 focus:border-[#E05A3D] text-lg px-6 placeholder:text-stone-400 shadow-sm transition-all",
+      "button": "Shadcn Button, h-14 rounded-xl bg-[#E05A3D] hover:bg-[#C94A2F] text-white font-medium text-lg px-8 shadow-[0_8px_20px_rgba(224,90,61,0.25)] hover:shadow-[0_12px_24px_rgba(224,90,61,0.35)] transition-all duration-300 hover:-translate-y-0.5"
+    },
+    "right_visual_element": {
+      "description": "A floating composition. A large soft-blurred gradient blob in the background. In the foreground, a crystal glassmorphism card holding a subtle food image, gently floating.",
+      "blob_classes": "absolute w-[300px] h-[300px] md:w-[500px] md:h-[500px] bg-gradient-to-tr from-[#E05A3D]/20 to-amber-300/30 rounded-full blur-[80px] -z-10 animate-pulse",
+      "card_classes": "relative z-10 w-full max-w-sm aspect-[4/5] rounded-[2rem] bg-white/40 backdrop-blur-2xl border border-white/60 shadow-[0_24px_48px_rgba(0,0,0,0.05)] overflow-hidden flex items-center justify-center p-8",
+      "image_treatment": "Image should be centered, taking up 80% of the card, floating up and down using Framer Motion."
+    }
+  },
+  "motion_interactions": {
+    "page_load": "Staggered fade-in and slide-up (y: 20 -> 0) for left column elements. Use Framer Motion. Duration 0.8s, ease: [0.16, 1, 0.3, 1].",
+    "visual_floating": "Right-side card floats vertically using Framer Motion: animate={{ y: [-10, 10] }}, transition={{ repeat: Infinity, repeatType: 'reverse', duration: 4, ease: 'easeInOut' }}.",
+    "hover_states": "Buttons lift slightly (-translate-y-1) with increased shadow. Inputs have a subtle border color transition."
+  },
+  "media": {
+    "image_urls": [
+      {
+        "url": "https://images.unsplash.com/photo-1767335911106-b96c1cc33099?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1Mjh8MHwxfHNlYXJjaHwxfHxtaW5pbWFsaXN0JTIwZ291cm1ldCUyMHBsYXRlJTIwd2hpdGUlMjBiYWNrZ3JvdW5kfGVufDB8fHx8MTc3ODA1NzI3NHww&ixlib=rb-4.1.0&q=85",
+        "category": "right_visual_image",
+        "description": "Minimalist gourmet chocolate chip cookie on a plate - represents 'cooking something delicious'."
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1692521248643-d54be61ae8cb?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1Mjh8MHwxfHNlYXJjaHwyfHxtaW5pbWFsaXN0JTIwZ291cm1ldCUyMHBsYXRlJTIwd2hpdGUlMjBiYWNrZ3JvdW5kfGVufDB8fHx8MTc3ODA1NzI3NHww&ixlib=rb-4.1.0&q=85",
+        "category": "right_visual_image_alternate",
+        "description": "Gold plate with green bowl - alternative premium abstract food visual."
+      }
+    ]
+  },
+  "instructions_to_main_agent": [
+    "Install and use 'framer-motion' for all animations: staggered load animations for text, and continuous floating animation for the right-side visual card.",
+    "Use Shadcn UI for the Input and Button components, but customize them heavily per the guidelines (rounded-xl, specific heights, and shadows). Add sonner for toast notifications.",
+    "Construct the Countdown Timer purely with React state and `setInterval`, target date is July 31, 2026. Create it as a distinct UI component with 4 cards (Days, Hours, Minutes, Seconds).",
+    "Ensure 'Inter' is NOT used for headings. Import 'Clash Display', 'Outfit', or 'Cabinet Grotesk' from Google Fonts or local assets for a premium feel.",
+    "Add 'data-testid' attributes to critical elements: email input ('email-input'), submit button ('get-access-button'), and the countdown timer container ('countdown-timer').",
+    "The background should use Tailwind CSS gradients for the warm fluid feel, applied to the main wrapper.",
+    "Create a FastAPI backend endpoint to receive the email and store it in MongoDB (or a mock MongoDB service if real DB is unavailable). Wire the frontend React form to POST to this endpoint and display a success toast via sonner."
+  ]
+}

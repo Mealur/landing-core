@@ -1,0 +1,227 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --font-display: "Clash Display", "Outfit", ui-sans-serif, system-ui, sans-serif;
+    --font-body: "Satoshi", "Inter", ui-sans-serif, system-ui, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+    --mealur-cream: #FFF8F3;
+    --mealur-peach: #FFEFE3;
+    --mealur-ember: #E05A3D;
+    --mealur-ember-dark: #C94A2F;
+    --mealur-ink: #2C2421;
+    --mealur-muted: #6E5E58;
+    --mealur-border: #EEDDCA;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-body);
+    color: var(--mealur-ink);
+    background: var(--mealur-cream);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+.font-display {
+    font-family: var(--font-display);
+    font-feature-settings: "ss01", "ss02";
+}
+
+.font-body {
+    font-family: var(--font-body);
+}
+
+.font-mono-timer {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.02em;
+}
+
+/* Warm fluid background blobs — pure CSS, animated */
+.mealur-bg {
+    position: relative;
+    background: linear-gradient(135deg, #FFF8F3 0%, #FFEFE3 55%, #FFFFFF 100%);
+    overflow: hidden;
+}
+
+.mealur-bg::before,
+.mealur-bg::after {
+    content: "";
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(90px);
+    opacity: 0.55;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.mealur-bg::before {
+    top: -160px;
+    right: -120px;
+    width: 520px;
+    height: 520px;
+    background: radial-gradient(
+        circle at 30% 30%,
+        rgba(224, 90, 61, 0.35),
+        rgba(255, 176, 110, 0.2) 60%,
+        transparent 75%
+    );
+    animation: floatBlobA 14s ease-in-out infinite;
+}
+
+.mealur-bg::after {
+    bottom: -180px;
+    left: -140px;
+    width: 460px;
+    height: 460px;
+    background: radial-gradient(
+        circle at 50% 50%,
+        rgba(255, 210, 150, 0.5),
+        rgba(255, 236, 200, 0.2) 60%,
+        transparent 75%
+    );
+    animation: floatBlobB 18s ease-in-out infinite;
+}
+
+@keyframes floatBlobA {
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+    50% {
+        transform: translate3d(-40px, 30px, 0) scale(1.08);
+    }
+}
+
+@keyframes floatBlobB {
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+    50% {
+        transform: translate3d(30px, -20px, 0) scale(1.06);
+    }
+}
+
+/* Subtle grain overlay for premium tactile feel */
+.mealur-grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.7  0 0 0 0 0.5  0 0 0 0 0.35  0 0 0 0.10 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    opacity: 0.25;
+    mix-blend-mode: multiply;
+    z-index: 1;
+}
+
+/* Steam drifting up from the food visual */
+@keyframes steamRise {
+    0% {
+        transform: translateY(0) translateX(0) scale(1);
+        opacity: 0;
+    }
+    15% {
+        opacity: 0.55;
+    }
+    100% {
+        transform: translateY(-110px) translateX(14px) scale(1.6);
+        opacity: 0;
+    }
+}
+
+.steam-line {
+    animation: steamRise 4.2s ease-out infinite;
+    transform-origin: center bottom;
+}
+
+.steam-line:nth-child(2) {
+    animation-delay: 0.9s;
+    animation-duration: 5s;
+}
+
+.steam-line:nth-child(3) {
+    animation-delay: 1.8s;
+    animation-duration: 4.6s;
+}
+
+/* Shimmering underline on CTA focus ring */
+.cta-glow:focus-visible {
+    outline: 2px solid rgba(224, 90, 61, 0.45);
+    outline-offset: 3px;
+}
+
+/* Shadcn tokens — keep minimal, aligned with warm light theme */
+@layer base {
+    :root {
+        --background: 30 60% 97%;
+        --foreground: 18 22% 15%;
+        --card: 0 0% 100%;
+        --card-foreground: 18 22% 15%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 18 22% 15%;
+        --primary: 13 72% 56%;
+        --primary-foreground: 30 60% 98%;
+        --secondary: 30 40% 93%;
+        --secondary-foreground: 18 22% 15%;
+        --muted: 30 30% 94%;
+        --muted-foreground: 18 12% 40%;
+        --accent: 30 50% 92%;
+        --accent-foreground: 18 22% 15%;
+        --destructive: 0 72% 52%;
+        --destructive-foreground: 0 0% 98%;
+        --border: 28 45% 86%;
+        --input: 28 45% 86%;
+        --ring: 13 72% 56%;
+        --radius: 0.875rem;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+}
+
+::selection {
+    background: rgba(224, 90, 61, 0.18);
+    color: var(--mealur-ink);
+}
+
+@layer base {
+    [data-debug-wrapper="true"] {
+        display: contents !important;
+    }
+
+    [data-debug-wrapper="true"] > * {
+        margin-left: inherit;
+        margin-right: inherit;
+        margin-top: inherit;
+        margin-bottom: inherit;
+        padding-left: inherit;
+        padding-right: inherit;
+        padding-top: inherit;
+        padding-bottom: inherit;
+        column-gap: inherit;
+        row-gap: inherit;
+        gap: inherit;
+        border-left-width: inherit;
+        border-right-width: inherit;
+        border-top-width: inherit;
+        border-bottom-width: inherit;
+        border-left-style: inherit;
+        border-right-style: inherit;
+        border-top-style: inherit;
+        border-bottom-style: inherit;
+        border-left-color: inherit;
+        border-right-color: inherit;
+        border-top-color: inherit;
+        border-bottom-color: inherit;
+    }
+}

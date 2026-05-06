@@ -1,0 +1,35 @@
+{
+  "summary": "Tested new Admin CSV export feature on MEALUR Coming Soon (backend + frontend). Backend pytest: 18/18 passed (9 new admin tests covering auth 401s for missing/wrong Bearer/X-Admin-Token/query token, list returns count+subscribers via X-Admin-Token, list via Bearer is sorted by created_at desc with newest first, CSV export via Bearer returns text/csv with Content-Disposition attachment header and 'email,source,created_at' header row containing seeded email, CSV via ?token= query param works, regression POST /api/waitlist still works; plus 9 existing waitlist tests). Frontend: 7/7 passed (login form renders at /admin, invalid token shows 'Invalid admin token' toast and stays on login, valid token logs in + persists to sessionStorage 'mealur_admin_token' + shows total card with count and 10 subscriber rows, refresh button re-fires GET /api/admin/waitlist, Download CSV triggers GET /api/admin/waitlist.csv with 200 + text/csv + attachment Content-Disposition, logout clears sessionStorage and returns to login screen, landing page / regression heading+countdown+email form intact).",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_admin.py",
+    "/app/backend/tests/test_waitlist.py",
+    "/app/test_reports/pytest/pytest_results.xml"
+  ],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "AdminPage.jsx downloadCsv uses window.location.href which navigates the SPA away to the CSV response; works because browser triggers download from Content-Disposition, but on some browsers it briefly shows a blank page then aborts navigation. Consider creating a hidden <a download href=...> click instead, or fetch with Authorization header + Blob URL (avoids exposing token in URL/server logs).",
+    "Admin token in CSV URL query param will appear in webserver access logs and browser history. Acceptable trade-off given documented constraint, but worth noting from a security standpoint.",
+    "AdminPage.jsx fetchList catches 401 and calls logout() which clears sessionStorage; good. However, the same inline axios call inside handleLogin doesn't reuse fetchList's error handling - minor duplication.",
+    "server.py require_admin returns 500 when ADMIN_TOKEN is empty; better DX would be to log a clear startup warning if ADMIN_TOKEN is missing.",
+    "Carry-over from iteration_1: server.py still uses deprecated @app.on_event startup/shutdown; EmailForm permanently locks into success state after first submit (page reload required to retry)."
+  ],
+  "updated_files": [
+    "/app/backend/tests/test_admin.py (new)"
+  ],
+  "success_rate": {"backend": "100%", "frontend": "100%"},
+  "test_credentials": "ADMIN_TOKEN=QLzYjRtoB2MYpcIqMDHAUm-GhKGTW2nWzeWJEkJOja8 (read from /app/backend/.env)",
+  "seed_data_creation": "Created several admintest_/newest_/regress_ prefixed waitlist entries during pytest runs; ~10 total entries visible in admin UI. No cleanup endpoint exists; harmless.",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Admin feature fully working. Backend tests in /app/backend/tests/test_admin.py + /app/backend/tests/test_waitlist.py (18 tests, all green). Admin route is /admin (BrowserRouter). data-testids: admin-login-form, admin-token-input, admin-login-button, admin-refresh-button, admin-download-csv-button, admin-logout-button, admin-subscribers-tbody, admin-total-card, admin-subscribers-card, admin-brand-logo. sessionStorage key: mealur_admin_token. CSV download navigates the page via window.location.href - re-navigate to /admin after testing it. Token accepted via Authorization: Bearer, X-Admin-Token header, or ?token= query param (CSV only).",
+  "rca of the issue": "No bugs found. Admin CSV export feature implementation matches spec end-to-end."
+}
