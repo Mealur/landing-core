@@ -71,10 +71,10 @@ function Footer() {
             <p>&copy; {new Date().getFullYear()} MEALUR. Cooked in Pune.</p>
             <div className="flex items-center gap-5">
                 <a
-                    href="mailto:hello@mealur.co"
+                    href="mailto:support@mealur.in"
                     className="hover:text-[#2C2421] transition-colors"
                 >
-                    hello@mealur.co
+                    support@mealur.in
                 </a>
                 <span className="h-1 w-1 rounded-full bg-[#EEDDCA]" />
                 <a href="#" className="hover:text-[#2C2421] transition-colors">
