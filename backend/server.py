@@ -190,10 +190,19 @@ async def admin_export_csv(_: bool = Depends(require_admin)):
 # Include the router in the main app
 app.include_router(api_router)
 
+cors_origins = [
+    origin.strip()
+    for origin in os.environ.get('CORS_ORIGINS', '').split(',')
+    if origin.strip()
+]
+
+if not cors_origins:
+    cors_origins = ['http://localhost:3000', 'http://localhost:5173']
+
 app.add_middleware(
     CORSMiddleware,
     allow_credentials=True,
-    allow_origins=os.environ.get('CORS_ORIGINS', '*').split(','),
+    allow_origins=cors_origins,
     allow_methods=["*"],
     allow_headers=["*"],
 )
