@@ -190,14 +190,20 @@ async def admin_export_csv(_: bool = Depends(require_admin)):
 # Include the router in the main app
 app.include_router(api_router)
 
-cors_origins = [
-    origin.strip()
-    for origin in os.environ.get('CORS_ORIGINS', '').split(',')
-    if origin.strip()
+default_cors_origins = [
+    'https://mealur.in',
+    'https://www.mealur.in',
+    'http://localhost:3000',
+    'http://localhost:5173',
 ]
 
-if not cors_origins:
-    cors_origins = ['http://localhost:3000', 'http://localhost:5173']
+env_cors_origins = [
+    origin.strip()
+    for origin in os.environ.get('CORS_ORIGINS', '').split(',')
+    if origin.strip() and origin.strip() != '*'
+]
+
+cors_origins = list(dict.fromkeys(default_cors_origins + env_cors_origins))
 
 app.add_middleware(
     CORSMiddleware,
