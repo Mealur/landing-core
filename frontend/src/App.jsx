@@ -77,16 +77,10 @@ function Footer() {
                     hello@mealur.co
                 </a>
                 <span className="h-1 w-1 rounded-full bg-[#EEDDCA]" />
-                <a
-                    href="#"
-                    className="hover:text-[#2C2421] transition-colors"
-                >
+                <a href="#" className="hover:text-[#2C2421] transition-colors">
                     Instagram
                 </a>
-                <a
-                    href="#"
-                    className="hover:text-[#2C2421] transition-colors"
-                >
+                <a href="#" className="hover:text-[#2C2421] transition-colors">
                     Twitter
                 </a>
             </div>
@@ -101,7 +95,6 @@ function Hero() {
             className="relative z-10 px-6 md:px-12 lg:px-16 pt-6 md:pt-10 pb-10"
         >
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center min-h-[78vh]">
-                {/* LEFT */}
                 <div className="col-span-1 lg:col-span-7 flex flex-col">
                     <motion.div
                         initial="hidden"
@@ -169,7 +162,6 @@ function Hero() {
                     </div>
                 </div>
 
-                {/* RIGHT */}
                 <div className="col-span-1 lg:col-span-5 h-[460px] sm:h-[520px] lg:h-[640px]">
                     <RightVisual />
                 </div>

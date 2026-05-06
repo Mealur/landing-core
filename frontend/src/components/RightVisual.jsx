@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
 
+import { API } from "@/lib/api";
+
 const FOOD_IMAGE =
     "https://images.unsplash.com/photo-1767335911106-b96c1cc33099?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1Mjh8MHwxfHNlYXJjaHwxfHxtaW5pbWFsaXN0JTIwZ291cm1ldCUyMHBsYXRlJTIwd2hpdGUlMjBiYWNrZ3JvdW5kfGVufDB8fHx8MTc3ODA1NzI3NHww&ixlib=rb-4.1.0&q=85";
 
-const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 const BASELINE = 408;
 
 function Steam() {
